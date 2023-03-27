@@ -14,6 +14,8 @@ class CustomTextFormField extends StatelessWidget {
       children: [
         Text(title),
         TextFormField( // 전송 버튼을 누를때 유효성 검사
+          // ! = 절대 null이 아니다
+          // 3. validator 만들어 준다
           validator: (value) => value!.isEmpty ? "Please enter some text" : null,
           // onChanged: (text){
           //   print(text);

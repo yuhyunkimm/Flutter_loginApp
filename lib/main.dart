@@ -58,6 +58,7 @@ class LoginPage extends StatelessWidget {
                 CustomTextFormField("password", isObscure: true),
                 TextButton(
                     onPressed: () {
+                      // 4. onpress에 유효성 검사
                       if(_formKey.currentState!.validate()){
                         Navigator.pushNamed(context, "/home");
                       }

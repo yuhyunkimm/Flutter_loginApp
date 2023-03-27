@@ -58,9 +58,9 @@ class LoginPage extends StatelessWidget {
                 CustomTextFormField("password", isObscure: true),
                 TextButton(
                     onPressed: () {
-                      // push :첫번째 장 위에 화면을 위에 얹어짐
-                      // pop : 제일 위에 장(화면)을 가져오는 것
-                      Navigator.pushNamed(context, "/home");
+                      if(_formKey.currentState!.validate()){
+                        Navigator.pushNamed(context, "/home");
+                      }
                     },
                     child: Text("Login")),
               ],

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_login/components/logo.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import 'components/custom_text_form_field.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -30,8 +32,7 @@ class LoginPage extends StatelessWidget {
       body: ListView(
         children: [
           Logo("Login"),
-          TextFormField(),
-
+          CustomTextFormField(),
         ],
       ),
     );

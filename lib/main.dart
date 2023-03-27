@@ -14,6 +14,19 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        textButtonTheme: TextButtonThemeData(
+          // 커스텀 하고 싶을 때 styleFrom
+          style: TextButton.styleFrom(
+            backgroundColor: Colors.black,
+            foregroundColor: Colors.white,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30),
+            ),
+            minimumSize: Size(double.infinity, 60),
+          ),
+        ),
+      ),
       debugShowCheckedModeBanner: false,
       initialRoute: "/login",
       routes: {
@@ -23,8 +36,12 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
 class LoginPage extends StatelessWidget {
-  const LoginPage({Key? key}) : super(key: key);
+  // 1. GlobalKey를 만든다.
+  final _formKey = GlobalKey<FormState>();
+
+  LoginPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +49,23 @@ class LoginPage extends StatelessWidget {
       body: ListView(
         children: [
           Logo("Login"),
-          CustomTextFormField(),
+          Form(
+            // 2. GlobalKey를 연결한다.
+            key: _formKey,
+            child: Column(
+              children: [
+                CustomTextFormField("email"),
+                CustomTextFormField("password", isObscure: true),
+                TextButton(
+                    onPressed: () {
+                      // push :첫번째 장 위에 화면을 위에 얹어짐
+                      // pop : 제일 위에 장(화면)을 가져오는 것
+                      Navigator.pushNamed(context, "/home");
+                    },
+                    child: Text("Login")),
+              ],
+            ),
+          ),
         ],
       ),
     );
@@ -45,7 +78,9 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(color: Colors.red,),
+      body: Container(
+        color: Colors.red,
+      ),
     );
   }
 }
